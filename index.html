@@ -11,13 +11,17 @@
 <body ng-controller="MyController">
     
 <h1>student details</h1>
-<h2>{{name}}</h2>
 
-<h3>update the student name</h3>
 
-<input type="text" ng-model="name">
+<input id="name" type="text" ng-model="name">
+<p>name: {{name}}</p>
 
-<p>updated name: {{name}}</p>
 
+<input id="age" type="number" ng-model="age">
+<p> age: {{age}}</p>
+
+
+<p> department: {{department}}</p>
+<p>semester:{{semester}}</p>
 </body>
 </html>
