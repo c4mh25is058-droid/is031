@@ -1,22 +1,25 @@
 var app = angular.module('myApp', []);
 
-app.controller('LibraryController', function($scope) {
-    $scope.libraryName = "My Library";
-    $scope.books = [
-        { name: "The Hobbit" },
-        { name: "Pride and Prejudice" },
-        { name: "The Little Prince" }
-    ];
+//parent controller
+
+app.controller('CollegeController', function($scope) {
+    $scope.collegeName = "MITM college";
 });
 
-app.controller('BooksController', function($scope) {
-    $scope.newBookName = "";
+//child controller
 
-    $scope.addBook = function() {
-        var bookName = $scope.newBookName.trim();
-        if (bookName) {
-            $scope.books.push({ name: bookName });
-            $scope.newBookName = "";
-        }
-    };
-});
+app.controller(
+    "StudentController", function($scope) {
+        $scope.name = "Nandan";
+        $scope.department = "Information Science";
+        $scope.semester = 3;
+
+        //aray
+        $scope.students =[
+            "AKSHAY U SHET",
+            "AYUSH KUMAR K S",
+            "karthik c",
+            "Nandan",
+        ];
+    }
+);

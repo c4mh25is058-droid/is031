@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library System</title>
+    <title>First Angular project</title>
      <script src="node_modules/angular/angular.js"></script>
      <script src="app.js"></script>
 
 </head>
 <body>
 
-<div ng-controller="LibraryController">
-    <h1>{{libraryName}}</h1>
+    
+    <div ng-controller="CollegeController">
+        <h2>welcome to {{collegeName}}</h2>
+        <hr>
+        <div ng-controller="StudentController">
+            <h2>student registration</h2>
+            <label>student name:</label>
+            <input type="text" ng-model="name">
+            <br><br>
 
-    <div ng-controller="BooksController">
-        <h2>Books</h2>
+            <label>department:</label>
+            <input type="text" ng-model="department">
+            <br><br>
+            <label>semester:</label>
+            <input type="text" ng-model="semester">
+            <hr>
 
-        <label for="newBookName">Add a book:</label>
-        <input id="newBookName" type="text" ng-model="newBookName">
-        <button type="button" ng-click="addBook()">Add book</button>
+            <h3>student Details</h3>
+            <p>Name: {{name}}</p>
+            <p>Department: {{department}}</p>
+            <p>Semester: {{semester}}</p>
 
-        <ul>
-            <li ng-repeat="book in books track by $index">
-                <input type="text" ng-model="book.name" aria-label="Book name">
-                <span>{{book.name}}</span>
-            </li>
-        </ul>
+            <h2>Student List</h2>
+            <ul>
+                <li ng-repeat="student in students">{{student}}</li>
+            </ul>
+        </div>
     </div>
-</div>
-
-</body>
 </html>
