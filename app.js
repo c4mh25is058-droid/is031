@@ -10,16 +10,28 @@ app.controller('CollegeController', function($scope) {
 
 app.controller(
     "StudentController", function($scope) {
-        $scope.name = "Nandan";
-        $scope.department = "Information Science";
+        $scope.name = "NANDAN";
+        $scope.department = "Information Science and Engineering";
         $scope.semester = 3;
 
         //aray
         $scope.students =[
+            "AMULYA E",
             "AKSHAY U SHET",
+            "AMRUTHA H S",
             "AYUSH KUMAR K S",
-            "karthik c",
-            "Nandan",
         ];
+
+//function to add a student ussing ng click
+        $scope.addStudent = function() {
+            if ($scope.name.trim() !==""){
+                $scope.students.push($scope.name);
+                $scope.name = "";
+            }
+            else{
+                alert("Please enter a student name");
+            }
+        };
+        
     }
 );
