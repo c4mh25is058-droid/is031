@@ -1,37 +1,56 @@
-var app = angular.module('myApp', []);
 
-//parent controller
+/*
+Name: Your Full Name
+Department: Your Department
+*/
 
-app.controller('CollegeController', function($scope) {
-    $scope.collegeName = "MITM college";
+// Create AngularJS application
+var app = angular.module("collegeApp", []);
+
+// Parent Controller
+app.controller("CollegeController", function($scope) {
+
+    // College name
+    $scope.collegeName = "MAHARAJA INSTITUTE OF TECHNOLOGY";
+
 });
 
-//child controller
+// Child Controller
+app.controller("StudentController", function($scope) {
 
-app.controller(
-    "StudentController", function($scope) {
-        $scope.name = "NANDAN";
-        $scope.department = "Information Science and Engineering";
-        $scope.semester = 3;
+    // Student input variables
+    $scope.name = "NANDAN KUMAR M";
+    $scope.department = "INFORMATION TECHNOLOGY";
+    $scope.semester = 3;
+    $scope.marks = 90;
 
-        //aray
-        $scope.students =[
-            "AMULYA E",
-            "AKSHAY U SHET",
-            "AMRUTHA H S",
-            "AYUSH KUMAR K S",
-        ];
+    // Sample student names
+    $scope.students = [
+        "Rahul",
+        "Priya",
+        "Arun"
+    ];
 
-//function to add a student ussing ng click
-        $scope.addStudent = function() {
-            if ($scope.name.trim() !==""){
-                $scope.students.push($scope.name);
-                $scope.name = "";
-            }
-            else{
-                alert("Please enter a student name");
-            }
-        };
-        
-    }
-);
+    // Initially hide student details
+    $scope.showDetails = false;
+
+    // Function to add a student
+    $scope.addStudent = function() {
+
+        if ($scope.name && $scope.name.trim() !== "") {
+
+            // Add student name to array
+            $scope.students.push($scope.name.trim());
+
+            // Clear name input
+            $scope.name = "";
+
+        } else {
+
+            alert("Please enter a student name!");
+
+        }
+
+    };
+
+});

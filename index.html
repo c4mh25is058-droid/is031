@@ -1,38 +1,143 @@
+
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="collegeApp">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Angular project</title>
-     <script src="node_modules/angular/angular.js"></script>
-     <script src="app.js"></script>
 
+    <title>Student Management System</title>
+
+    <!-- AngularJS Library -->
+    <script src="node_modules/angular/angular.js"></script>
+
+    <!-- Application JavaScript -->
+    <script src="app.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #23436b;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 8px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #23436b;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #152d4b;
+        }
+
+        li {
+            padding: 8px;
+            background: #eef2f7;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        .details {
+            background: #eef5ff;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .pass {
+            color: green;
+            font-weight: bold;
+        }
+
+        .fail {
+            color: red;
+            font-weight: bold;
+        }
+
+        hr {
+            margin: 20px 0;
+        }
+    </style>
 </head>
+
 <body>
 
-    
-    <div ng-controller="CollegeController">
-        <h2>welcome to {{collegeName}}</h2>
-        <hr>
-        <div ng-controller="StudentController">
-            <h2>student registration</h2>
-            <label>student name:</label>
-            <input type="text" ng-model="name">
-            <br><br>
+    <!-- Parent Controller -->
+    <div class="container" ng-controller="CollegeController">
 
-            <label>department:</label>
-            <input type="text" ng-model="department">
-            <br><br>
-            <label>semester:</label>
-            <input type="text" ng-model="semester">
+        <h1>{{ collegeName }}</h1>
+        <h2>Student Management System</h2>
+
+        <!-- Child Controller -->
+        <div ng-controller="StudentController">
+
             <hr>
+
+            <h2>Student Entry Form</h2>
+
+            <label>Student Name:</label>
+            <input type="text"
+                   ng-model="name"
+                   placeholder="Enter student name">
+
+            <label>Department:</label>
+            <input type="text"
+                   ng-model="department"
+                   placeholder="Enter department">
+
+            <label>Semester:</label>
+            <input type="number"
+                   ng-model="semester"
+                   placeholder="Enter semester">
+
+            <label>Examination Marks:</label>
+            <input type="number"
+                   ng-model="marks"
+                   placeholder="Enter marks"
+                   min="0"
+                   max="100">
+
+            <!-- Action Buttons -->
             <button ng-click="addStudent()">
-                Register Student
+                Add Student
+            </button>
+
+            <button ng-click="showDetails = !showDetails">
+                Show / Hide Details
             </button>
 
             <hr>
 
-            <h2>Registered Students</h2>
+            <!-- Student List -->
+            <h2>Student List</h2>
 
             <ul>
                 <li ng-repeat="student in students">
@@ -40,7 +145,43 @@
                 </li>
             </ul>
 
+            <hr>
+
+            <!-- Student Details -->
+            <div class="details" ng-show="showDetails">
+
+                <h2>Student Details</h2>
+
+                <p><b>Name:</b> {{ name }}</p>
+                <p><b>Department:</b> {{ department }}</p>
+                <p><b>Semester:</b> {{ semester }}</p>
+                <p><b>Marks:</b> {{ marks }}</p>
+
+            </div>
+
+            <hr>
+
+            <!-- Examination Result -->
+            <h2>Examination Result</h2>
+
+            <p ng-if="marks !== undefined && marks !== null && marks !== '' && marks >= 40 && marks <= 100"
+               ng-class="{'pass': marks >= 40}">
+                Pass
+            </p>
+
+            <p ng-if="marks !== undefined && marks !== null && marks !== '' && marks < 40 && marks >= 0"
+               ng-class="{'fail': marks < 40}">
+                Needs Improvement
+            </p>
+
+            <p ng-if="marks > 100 || marks < 0"
+               class="fail">
+                Please enter marks between 0 and 100.
+            </p>
 
         </div>
+
     </div>
+
+</body>
 </html>
